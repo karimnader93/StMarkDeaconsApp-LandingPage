@@ -8,108 +8,125 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box}
-  body{margin:0;background:#F2F6F3;color:#1B3B30;font-family:'Cairo',system-ui,sans-serif;min-height:100vh;display:flex;justify-content:center;padding:20px 16px 56px}
+  body{margin:0;background:#F0F5FC;color:#0F2A4A;font-family:'Cairo',system-ui,sans-serif;min-height:100vh;display:flex;justify-content:center;padding:20px 16px 56px}
   .wrap{width:100%;max-width:520px;display:flex;flex-direction:column;gap:28px}
-  .lang{display:flex;justify-content:flex-end;gap:8px;direction:ltr}
-  .lang button{width:44px;height:44px;border-radius:12px;border:1px solid #C9D8CE;background:#fff;color:#1B3B30;font:700 14px 'Cairo',sans-serif;cursor:pointer}
-  .lang button[aria-pressed="true"]{background:#1B3B30;border-color:#1B3B30;color:#fff}
+  .top{display:flex;justify-content:space-between;align-items:center;direction:ltr;min-height:44px}
+  .lang{display:flex;gap:8px;margin-left:auto}
+  .lang button,.back{height:44px;border-radius:12px;border:1px solid #C6D6EC;background:#fff;color:#0F2A4A;font:700 14px 'Cairo',sans-serif;cursor:pointer}
+  .lang button{width:44px}
+  .lang button[aria-pressed="true"]{background:#0F2A4A;border-color:#0F2A4A;color:#fff}
+  .back{padding:0 16px}
   main{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;padding-top:16px}
   h1{margin:0;font-size:36px;line-height:1.4;font-weight:700}
   h1 span{display:block}
   .en{direction:ltr}
-  .sub{margin:0;font-size:20px;color:#4A5F55}
-  .copy{width:100%;height:58px;margin-top:8px;border:0;border-radius:18px;background:#12724A;color:#fff;font:700 17px 'Cairo',sans-serif;cursor:pointer}
-  .url{font-size:17px;color:#1B3B30;text-decoration:underline;direction:ltr}
-  .hint{margin:0;font-size:15px;color:#4A5F55}
-  .ok{margin:0;font-size:15px;font-weight:700;color:#12724A}
-  .ok[hidden]{display:none}
-  svg{display:block;margin-top:-8px}
-  .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-  .cards.single{grid-template-columns:minmax(0,1fr)}
-  .card{background:#fff;border:1px solid #D6E2DA;border-radius:22px;padding:22px 16px;display:flex;flex-direction:column;gap:18px;text-align:center}
-  .card[hidden]{display:none}
-  .card h2{margin:0;font-size:22px}
-  .card a{display:block;padding:14px 8px;border-radius:12px;background:#E8F1EC;color:#1B3B30;font-size:15px;font-weight:700;text-decoration:none}
-  button:focus-visible,a:focus-visible{outline:3px solid #12724A;outline-offset:3px}
+  .sub{margin:0;font-size:20px;color:#4A5F7A}
+  .stack{width:100%;display:flex;flex-direction:column;gap:14px;margin-top:12px}
+  .btn{display:block;width:100%;padding:18px 12px;border:0;border-radius:18px;background:#1D5FBF;color:#fff;font:700 19px 'Cairo',sans-serif;text-align:center;text-decoration:none;cursor:pointer}
+  .btn:hover{background:#174E9C}
+  .btn.light{background:#fff;color:#0F2A4A;border:1px solid #C6D6EC}
+  .btn.light:hover{background:#E6EFFB}
+  [hidden]{display:none !important}
+  button:focus-visible,a:focus-visible{outline:3px solid #1D5FBF;outline-offset:3px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="lang">
-    <button id="bEn" type="button" aria-pressed="false">EN</button>
-    <button id="bAr" type="button" aria-pressed="true">AR</button>
-  </div>
-
-  <main>
-    <h1><span id="welcome">مرحبا بك في تطبيق</span><span class="en">St. Mark Deacons App</span></h1>
-    <p class="sub" id="sub">تابع الخطوات التالية</p>
-    <button class="copy" id="copy" type="button">نسخ الرابط</button>
-    <a class="url" id="urlLink" href="https://app.stmarkdeaconsmaadi.com/">https://app.stmarkdeaconsmaadi.com/</a>
-    <p class="hint" id="hint">اضغط مطولاً على الرابط واختر نسخ الرابط.</p>
-    <p class="ok" id="ok" role="status" hidden>تم نسخ الرابط</p>
-  </main>
-
-  <div>
-    <svg viewBox="0 0 100 28" preserveAspectRatio="none" width="100%" height="28" aria-hidden="true">
-      <path d="M50 0 V12 M25 12 H75 M25 12 V28 M75 12 V28" fill="none" stroke="#9DB3A6" stroke-width="2" vector-effect="non-scaling-stroke"/>
-    </svg>
-    <div class="cards" id="cards">
-      <section class="card" id="cAndroid">
-        <h2>Android</h2>
-        <a id="aAndroid" href="intent://app.stmarkdeaconsmaadi.com/#Intent;scheme=https;package=com.android.chrome;end">افتح في Chrome</a>
-      </section>
-      <section class="card" id="cIos">
-        <h2>iOS</h2>
-        <a id="aIos" href="x-safari-https://app.stmarkdeaconsmaadi.com/">افتح رابط التطبيق</a>
-      </section>
+  <div class="top">
+    <button class="back" id="back" type="button" hidden>← Back</button>
+    <div class="lang">
+      <button id="bEn" type="button" aria-pressed="false">EN</button>
+      <button id="bAr" type="button" aria-pressed="true">AR</button>
     </div>
   </div>
+
+  <!-- Page 1: welcome -->
+  <main id="home">
+    <h1><span id="welcome">مرحبا بك في تطبيق</span><span class="en">St. Mark Deacons App</span></h1>
+    <p class="sub" id="sub">تابع الخطوات التالية</p>
+    <div class="stack">
+      <button class="btn" id="goIos" type="button">iOS</button>
+      <button class="btn" id="goAndroid" type="button">Android</button>
+    </div>
+  </main>
+
+  <!-- Page 2: iOS / Android levels -->
+  <main id="levels" hidden>
+    <h1 class="en" id="platform">iOS</h1>
+    <p class="sub" id="pick">اختر المستوى</p>
+    <div class="stack" id="levelButtons"></div>
+  </main>
 </div>
 
 <script>
 (function(){
-  var URL_ = 'https://app.stmarkdeaconsmaadi.com/';
-  var T = {
-    ar:{welcome:'مرحبا بك في تطبيق',sub:'تابع الخطوات التالية',copy:'نسخ الرابط',hint:'اضغط مطولاً على الرابط واختر نسخ الرابط.',ok:'تم نسخ الرابط',ios:'افتح رابط التطبيق',android:'افتح في Chrome'},
-    en:{welcome:'Welcome to the',sub:'Follow the next steps',copy:'Copy link',hint:'Press and hold the link, then choose Copy link.',ok:'Link copied',ios:'Open app link',android:'Open in Chrome'}
+  // ====== PUT THE LINKS HERE ======
+  var LINKS = {
+    ios: {
+      l1a: '#', l1b: '#', l2: '#', l3: '#', l4: '#'
+    },
+    android: {
+      l1a: '#', l1b: '#', l2: '#', l3: '#', l4: '#'
+    }
   };
+  // ================================
+
+  var LEVELS = [
+    {id:'l1a', ar:'المستوي الأول A', en:'Level 1 – A'},
+    {id:'l1b', ar:'المستوي الأول B', en:'Level 1 – B'},
+    {id:'l2',  ar:'المستوي الثاني',  en:'Level 2'},
+    {id:'l3',  ar:'المستوي الثالث',  en:'Level 3'},
+    {id:'l4',  ar:'المستوي الرابع',  en:'Level 4'}
+  ];
+  var T = {
+    ar:{welcome:'مرحبا بك في تطبيق',sub:'تابع الخطوات التالية',pick:'اختر المستوى',back:'← رجوع'},
+    en:{welcome:'Welcome to the',sub:'Follow the next steps',pick:'Choose your level',back:'← Back'}
+  };
+  var lang = 'ar';
   var $ = function(id){return document.getElementById(id)};
 
+  function view(){
+    var h = (location.hash || '').replace('#','');
+    var plat = (h === 'ios' || h === 'android') ? h : '';
+    $('home').hidden = !!plat;
+    $('levels').hidden = !plat;
+    $('back').hidden = !plat;
+    if (plat) {
+      $('platform').textContent = plat === 'ios' ? 'iOS' : 'Android';
+      var box = $('levelButtons');
+      box.innerHTML = '';
+      LEVELS.forEach(function(lv){
+        var a = document.createElement('a');
+        a.className = 'btn';
+        a.href = LINKS[plat][lv.id] || '#';
+        a.textContent = lang === 'ar' ? lv.ar : lv.en;
+        box.appendChild(a);
+      });
+    }
+    window.scrollTo(0,0);
+  }
+
   function setLang(l){
+    lang = l;
     var t = T[l];
     document.documentElement.lang = l;
     document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
     $('welcome').textContent = t.welcome;
     $('sub').textContent = t.sub;
-    $('copy').textContent = t.copy;
-    $('hint').textContent = t.hint;
-    $('ok').textContent = t.ok;
-    $('aIos').textContent = t.ios;
-    $('aAndroid').textContent = t.android;
+    $('pick').textContent = t.pick;
+    $('back').textContent = t.back;
     $('bEn').setAttribute('aria-pressed', l === 'en');
     $('bAr').setAttribute('aria-pressed', l === 'ar');
+    view();
   }
+
   $('bEn').onclick = function(){setLang('en')};
   $('bAr').onclick = function(){setLang('ar')};
-
-  function fallbackCopy(){
-    var ta = document.createElement('textarea');
-    ta.value = URL_; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
-    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, 999);
-    try{ document.execCommand('copy'); }catch(e){}
-    document.body.removeChild(ta);
-  }
-  $('copy').onclick = function(){
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(URL_).catch(fallbackCopy);
-    } else { fallbackCopy(); }
-    $('ok').hidden = false;
-  };
-
-  // "Open in Chrome": iPhones use Chrome's own link scheme, Android uses an intent
-  var ua = navigator.userAgent || '';
-  var isIos = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  if (isIos) { $('aAndroid').href = 'googlechromes://app.stmarkdeaconsmaadi.com/'; }
+  $('goIos').onclick = function(){location.hash = 'ios'};
+  $('goAndroid').onclick = function(){location.hash = 'android'};
+  $('back').onclick = function(){location.hash = ''; history.replaceState(null,'',location.pathname); view();};
+  window.addEventListener('hashchange', view);
+  setLang('ar');
 })();
 </script>
 </body>
