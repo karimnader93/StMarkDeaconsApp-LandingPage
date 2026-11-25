@@ -106,6 +106,10 @@
     $('ok').hidden = false;
   };
 
+  // "Open in Chrome": iPhones use Chrome's own link scheme, Android uses an intent
+  var ua = navigator.userAgent || '';
+  var isIos = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (isIos) { $('aAndroid').href = 'googlechromes://app.stmarkdeaconsmaadi.com/'; }
 })();
 </script>
 </body>
