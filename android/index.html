@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>St. Mark Deacons App</title>
+<style>
+  body{margin:0;background:#F2F6F3;color:#1B3B30;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+  .box{width:100%;max-width:420px;display:flex;flex-direction:column;gap:16px}
+  h1{margin:0;font-size:24px}
+  p{margin:0;color:#4A5F55;font-size:16px}
+  a.btn,button{display:block;width:100%;padding:16px;border:0;border-radius:16px;background:#12724A;color:#fff;font-size:17px;font-weight:700;text-decoration:none;font-family:inherit}
+  button.alt{background:#E8F1EC;color:#1B3B30}
+  .err{color:#9B1C1C}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>St. Mark Deacons App</h1>
+  <p id="msg">جارٍ فتح الرابط في Chrome…</p>
+  <a class="btn" id="open" href="#">افتح في Chrome</a>
+  <button class="alt" id="copy" type="button">نسخ الرابط</button>
+  <p id="note"></p>
+</div>
+<script>
+(function(){
+  var HOST = 'app.stmarkdeaconsmaadi.com';
+  var path = decodeURIComponent((location.hash || '').replace(/^#/, ''));
+  if (path.charAt(0) !== '/') path = '/' + path;
+  var ok = /^\/(activate\/[A-Za-z0-9_-]{16,200}|login)\/?$/.test(path);
+  var msg = document.getElementById('msg'), note = document.getElementById('note');
+  if (!ok) {
+    msg.textContent = 'الرابط غير صالح';
+    msg.className = 'err';
+    document.getElementById('open').style.display = 'none';
+    document.getElementById('copy').style.display = 'none';
+    return;
+  }
+  var https = 'https://' + HOST + path;
+  var chrome = 'intent://' + HOST + path + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(https) + ';end';
+  var open = document.getElementById('open');
+  open.href = chrome;
+  document.getElementById('copy').onclick = function(){
+    function done(){ note.textContent = 'تم نسخ الرابط. الصقه في Chrome.'; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(https).then(done, function(){ prompt('', https); });
+    } else { prompt('', https); }
+  };
+  // try automatically; the button is the fallback if the browser blocks it
+  setTimeout(function(){ location.href = chrome; }, 300);
+})();
+</script>
+</body>
+</html>
